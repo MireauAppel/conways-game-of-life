@@ -28,7 +28,7 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
 
     @Override
     public S initialValueAt(Coordinate coordinate) {
-        List<State<S>> neighbours = new ArrayList<>();
+        List<S> neighbours = new ArrayList<>();
         for (Coordinate neighbourCoord : coordinate.orthodiagonalNeighbours()) {
             Coordinate wrapped = wrap(neighbourCoord);
             neighbours.add(this.simulation.at(wrapped).get());
@@ -45,7 +45,7 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
      * @param coordinate a {@link Coordinate} that may be outside the grid.
      * @return a corresponding {@link Coordinate}, that is inside the grid.
      */
-    private Coordinate wrap(Coordinate coordinate) {
+    Coordinate wrap(Coordinate coordinate) {
         return new Coordinate(
                 modulo(coordinate.x(),this.simulation.numberOfColumns()),
                 modulo(coordinate.y(),this.simulation.numberOfRows())
@@ -58,7 +58,7 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
      * @param d a non-zero integer.
      * @return the remainder of {@code n/d}, between {@code 0} and {@code n-1}.
      */
-    private static int modulo(int n, int d) {
+    static int modulo(int n, int d) {
         int result = n % d;
         return n < 0 ? result + d : result;
     }
