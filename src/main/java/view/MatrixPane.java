@@ -8,6 +8,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+import java.util.List;
+
 /**
  * Created by Arnaud Labourel on 22/11/2018.
  */
@@ -62,7 +64,11 @@ public class MatrixPane extends GridPane {
                 event -> this.startFullDrag()
         );
         cellRectangle.addEventHandler(
-                MouseDragEvent.MOUSE_DRAG_RELEASED,
+                MouseEvent.MOUSE_CLICKED,
+                event -> mouseListener.onMouseClicked(event, coord)
+        );
+        cellRectangle.addEventHandler(
+                MouseDragEvent.MOUSE_RELEASED,
                 event -> mouseListener.onMouseReleased(event, coord)
         );
         cellRectangle.addEventHandler(
@@ -78,6 +84,8 @@ public class MatrixPane extends GridPane {
     }
 
     void resetWaitingListener() {
-        this.mouseListener = new WaitingMouseListener(this);
+        setMouseListener(new WaitingMouseListener(this));
     }
+
+
 }

@@ -3,12 +3,12 @@ package view;
 import datastruct.Coordinate;
 import javafx.scene.input.MouseEvent;
 
-public class FillingMouseListener implements MouseListener {
+public class DraggingListener implements MouseListener {
     private final MatrixPane matrix;
     private final Coordinate source;
 
 
-    public FillingMouseListener(MatrixPane matrix, Coordinate source) {
+    public DraggingListener(MatrixPane matrix, Coordinate source) {
         this.matrix = matrix;
         this.source = source;
     }
@@ -29,9 +29,8 @@ public class FillingMouseListener implements MouseListener {
 
     @Override
     public void onMousePressed(MouseEvent event, Coordinate coordinate) {
-        this.matrix.getController().getSimulation().next(coordinate);
         this.matrix.setMouseListener(
-                new FillingMouseListener(this.matrix, coordinate)
+                new MousePressedListener(this.matrix, coordinate)
         );
     }
 

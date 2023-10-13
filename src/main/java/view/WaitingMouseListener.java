@@ -14,8 +14,7 @@ class WaitingMouseListener implements MouseListener {
 
     @Override
     public void onMousePressed(MouseEvent event, Coordinate coordinate) {
-        this.matrix.getController().getSimulation().next(coordinate);
-        this.matrix.setMouseListener(new FillingMouseListener(this.matrix, coordinate));
+        this.matrix.setMouseListener(new MousePressedListener(this.matrix, coordinate));
     }
 
 
