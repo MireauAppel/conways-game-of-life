@@ -11,7 +11,8 @@ import datastruct.MatrixInitializer;
  * @param <T> the type of content of each cell
  */
 public class ConstantCellInitializer<T>  implements MatrixInitializer<Cell<T>> {
-    //TODO: ajouter la/les propriétes nécessaires
+
+    private final T value;
 
     /** Make a new {@link MatrixInitializer} with cells containing a {@link Cell} with the same
      * value.
@@ -19,12 +20,11 @@ public class ConstantCellInitializer<T>  implements MatrixInitializer<Cell<T>> {
      * @param defaultValue the value stored in each cell.
      */
     public ConstantCellInitializer(T defaultValue) {
-        //TODO: à compléter
+        this.value = defaultValue;
     }
 
     @Override
     public Cell<T> initialValueAt(Coordinate coordinate) {
-        //TODO: à compléter
-        return null;
+        return new Cell<>(value);
     }
 }
