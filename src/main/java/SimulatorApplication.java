@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.CellularAutomatonSimulation;
 import model.automata.GameOfLifeAutomaton;
+import model.automata.WireWorldAutomaton;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,7 +38,7 @@ public class SimulatorApplication extends Application {
   public SimulatorApplication() {
     this.simulation =
       new CellularAutomatonSimulation<>(
-              new GameOfLifeAutomaton(NUMBER_OF_COLUMNS,NUMBER_OF_ROWS),
+              new WireWorldAutomaton(NUMBER_OF_COLUMNS,NUMBER_OF_ROWS),
               GENERATOR
       );
   }
