@@ -9,6 +9,10 @@ import java.util.NoSuchElementException;
  */
 class CoordinateIterator implements Iterator<Coordinate> {
 
+    private Coordinate current = new Coordinate(0,0);
+    private final int width;
+    private final int height;
+
     /**
      * Creates a new {@link CoordinateIterator} with the specified width and height.
      *
@@ -16,7 +20,8 @@ class CoordinateIterator implements Iterator<Coordinate> {
      * @param height The height of the coordinate range.
      */
     public CoordinateIterator(int width, int height) {
-        // TODO: à compléter
+        this.width = width;
+        this.height = height;
     }
 
     /**
@@ -26,8 +31,7 @@ class CoordinateIterator implements Iterator<Coordinate> {
      */
     @Override
     public boolean hasNext() {
-        // TODO: à compléter
-        return false;
+        return this.current.y() != height;
     }
 
     /**
@@ -38,7 +42,18 @@ class CoordinateIterator implements Iterator<Coordinate> {
      */
     @Override
     public Coordinate next() {
-        // TODO: à compléter
-        return null;
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        Coordinate next = this.current;
+        this.update();
+        return next;
+    }
+
+    private void update() {
+        this.current = this.current.right();
+        if (this.current.x() == this.width) {
+            this.current = new Coordinate(0,this.current.y() + 1);
+        }
     }
 }
