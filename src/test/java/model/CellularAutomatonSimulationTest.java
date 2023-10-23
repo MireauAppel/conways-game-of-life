@@ -78,7 +78,7 @@ class CellularAutomatonSimulationTest {
         Coordinate coordinate = Coordinate.of(1, 1);
         Cell<GameOfLifeState> cell = simulation.at(coordinate);
         GameOfLifeState oldState = cell.get();
-        simulation.next(coordinate);
+        simulation.cycleThrough(coordinate);
         assertNotEquals(oldState, cell.get());
     }
 

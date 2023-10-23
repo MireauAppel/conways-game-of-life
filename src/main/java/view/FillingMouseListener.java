@@ -29,7 +29,7 @@ public class FillingMouseListener implements MouseListener {
 
     @Override
     public void onMousePressed(MouseEvent event, Coordinate coordinate) {
-        this.matrix.getController().getSimulation().next(coordinate);
+        this.matrix.getController().getSimulation().cycleThrough(coordinate);
         this.matrix.setMouseListener(
                 new FillingMouseListener(this.matrix, coordinate)
         );

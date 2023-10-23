@@ -37,7 +37,7 @@ public interface Simulation extends Iterable<Coordinate> {
      *
      * @param coordinate The {@link Coordinate} to advance to the next state.
      */
-    void next(Coordinate coordinate);
+    void cycleThrough(Coordinate coordinate);
 
     /**
      * Copies the state from the source {@link Coordinate} to the destination {@link Coordinate}.
