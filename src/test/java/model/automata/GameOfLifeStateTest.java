@@ -1,7 +1,6 @@
 package model.automata;
 
 import javafx.scene.paint.Color;
-import model.State;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -18,8 +17,8 @@ class GameOfLifeStateTest {
 
     @Test
     public void testNext() {
-        assertEquals(ALIVE.next(), DEAD);
-        assertEquals(DEAD.next(), ALIVE);
+        assertEquals(ALIVE.cycle(), DEAD);
+        assertEquals(DEAD.cycle(), ALIVE);
     }
 
     @Test

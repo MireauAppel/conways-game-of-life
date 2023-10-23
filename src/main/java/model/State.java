@@ -21,11 +21,11 @@ public interface State<S> {
     Color getColor();
 
     /**
-     * Computes and returns the next state based on the rules of the cellular automaton.
+     * Computes and returns the states by cycling through each possible state
      *
      * @return The next state.
      */
-    S next();
+    S cycle();
 
     /**
      * Updates the state based on the states of its neighboring cells.
@@ -44,7 +44,12 @@ public interface State<S> {
      * @return The number of times the specified state appears in the list of neighbors.
      */
     static <T> int count(T state, List<T> neighbours) {
-        //TODO: à compléter
-        return 0;
+        int count = 0;
+        for (T element : neighbours) {
+            if (element.equals(state)) {
+                count = count + 1;
+            }
+        }
+        return count;
     }
 }
