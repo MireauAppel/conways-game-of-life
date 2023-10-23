@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class NextGenerationInitializer<S extends State<S>> implements MatrixInitializer<S> {
 
-    //TODO: ajouter les propriétés nécessaires
+    private final CellularAutomatonSimulation<S> simulation;
 
     /** Create a {@link MatrixInitializer} to compute the next generation in
      * a 2D cellular automaton.
@@ -23,13 +23,17 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
      * @param simulation the {@link Simulation} representing the cellular automaton.
      */
     public NextGenerationInitializer(CellularAutomatonSimulation<S> simulation) {
-        //TODO: à compléter
+        this.simulation = simulation;
     }
 
     @Override
     public S initialValueAt(Coordinate coordinate) {
-        //TODO: à compléter
-        return null;
+        List<Coordinate> neighbours = coordinate.orthodiagonalNeighbours();
+        List<S> states = new ArrayList<>();
+        for (Coordinate neighbour : neighbours) {
+            states.add(this.simulation.at(wrap(neighbour)).get());
+        }
+        return this.simulation.at(coordinate).get().update(states);
     }
 
     /** Computes the grid {@link Coordinate} for an arbitrary {@link Coordinate}, even outside
@@ -41,10 +45,10 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
      * @return a corresponding {@link Coordinate}, that is inside the grid.
      */
     Coordinate wrap(Coordinate coordinate) {
-        //TODO: à compléter
-        //Il faut recalculer les coordonnées x et y modulo les dimensions de la grille.
-        //Pour le modulo, utiliser la fonction ci-dessous, qui s'assure que le résultat est positif.
-        return null;
+        return new Coordinate(
+                modulo(coordinate.x(),this.simulation.numberOfColumns()),
+                modulo(coordinate.y(),this.simulation.numberOfRows())
+        );
     }
 
     /** The non-negative remainder of n divided by d.
