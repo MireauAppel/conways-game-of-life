@@ -23,10 +23,9 @@ public class ListMatrix<T> implements Matrix<T> {
    * @param initializer A matrix initializer to set values in the {@link ListMatrix}.
    */
   public ListMatrix(int width, int height, MatrixInitializer<T> initializer) {
-    // TODO
-    this.width = 0;
-    this.height = 0;
-    this.matrix = null;
+    this.width = width;
+    this.height = height;
+    this.matrix = List.of();
     this.initializeWith(initializer); // fills the matrix using initializer
   }
 
@@ -35,17 +34,16 @@ public class ListMatrix<T> implements Matrix<T> {
   }
 
   private void initializeWith(MatrixInitializer<T> initializer) {
+
     // TODO initialize each cell of the matrix, with a value determined by initializer
   }
 
   public int width() {
-    // TODO
-    return 0;
+    return this.width;
   }
 
   public int height() {
-    // TODO
-    return 0;
+    return this.height;
   }
 
   @Override

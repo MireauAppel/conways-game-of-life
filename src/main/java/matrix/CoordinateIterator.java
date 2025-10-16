@@ -46,7 +46,6 @@ class CoordinateIterator implements Iterator<Coordinate> {
         current = current.right();
         if (current.x()==width)
             current = new  Coordinate(0,current.y()+1);
-
         return next;
     }
 }
