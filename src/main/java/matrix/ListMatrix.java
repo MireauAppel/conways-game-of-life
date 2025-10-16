@@ -34,8 +34,7 @@ public class ListMatrix<T> implements Matrix<T> {
   }
 
   private void initializeWith(MatrixInitializer<T> initializer) {
-
-    // TODO initialize each cell of the matrix, with a value determined by initializer
+    set(iterator().next().x(),iterator().next().y(),initializer);
   }
 
   public int width() {
