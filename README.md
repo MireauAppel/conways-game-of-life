@@ -19,5 +19,5 @@ jeu de la vie.
 
 ## Membre du projet
 
-- NOM, prénom, du participant
+- APPEL, Mireau
 
