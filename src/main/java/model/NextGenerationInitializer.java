@@ -47,7 +47,10 @@ public class NextGenerationInitializer<S extends State<S>> implements MatrixInit
     Coordinate wrap(Coordinate coordinate) {
         //Il faut recalculer les coordonnées x et y modulo les dimensions de la grille.
         //Pour le modulo, utiliser la fonction ci-dessous, qui s'assure que le résultat est positif.
-        return ;
+        return new Coordinate(
+                modulo(coordinate.x(),this.sim.numberOfColumns()),
+                modulo(coordinate.y(),this.sim.numberOfRows())
+        );
     }
 
     /** The non-negative remainder of n divided by d.
