@@ -1,5 +1,5 @@
 package matrix;
-
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,7 +25,7 @@ public class ListMatrix<T> implements Matrix<T> {
   public ListMatrix(int width, int height, MatrixInitializer<T> initializer) {
     this.width = width;
     this.height = height;
-    this.matrix = List.of();
+    this.matrix = new ArrayList<>(height);
     this.initializeWith(initializer); // fills the matrix using initializer
   }
 
@@ -34,7 +34,14 @@ public class ListMatrix<T> implements Matrix<T> {
   }
 
   private void initializeWith(MatrixInitializer<T> initializer) {
-    set(iterator().next().x(),iterator().next().y(),initializer);
+    for(int i = 0; i<width; i++){
+      List<T> line = new ArrayList<>(width);
+
+      for(int j = 0; j<height; j++) {
+        line.add(initializer.initialValueAt(new Coordinate(i, j)));
+      }
+      matrix.add(line);
+    }
   }
 
   public int width() {
@@ -47,17 +54,16 @@ public class ListMatrix<T> implements Matrix<T> {
 
   @Override
   public T get(int x, int y) {
-    return this.matrix.get(x).get(y);
+    return matrix.get(x).get(y);
   }
-
 
   @Override
   public void set(int x, int y, T newValue) {
-    this.matrix.get(x).set(y, newValue);
+    matrix.get(x).set(y, newValue);
   }
 
   public Matrix<T> subMatrix(Coordinate corner, int width, int height) {
-    return new ListMatrix<>(width, height, new SubMatrixInitializer<>(this.corner));
+    return new ListMatrix<>(width, height, new SubMatrixInitializer<T>(this,corner));
   }
 
 }
