@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Cell<T> implements Lens<T> {
 
-    //TODO: ajouter la ou les propriétés nécessaires
+    private final List<Cell<T>> cells;
 
     // la liste des objets écoutant les modifications du contenu de la cellule
     private final List<OnChangeListener<T>> listeners = new ArrayList<>();
@@ -21,7 +21,8 @@ public class Cell<T> implements Lens<T> {
      * @param initialContent the value initially stored by the cell.
      */
     public Cell(T initialContent) {
-        //TODO: à compléter
+        Cell<T> cell = new Cell<>(initialContent);
+        this.lenses = cell.lenses;
     }
 
     /** Add a {@link OnChangeListener} to react to any change of value in the cell.
@@ -40,6 +41,8 @@ public class Cell<T> implements Lens<T> {
      * @param value the new content of this {@link Cell}
      */
     public void set(T value) {
+        this.lenses.get(0).set(value);
+
         //TODO: modifier le contenu de la cellule, puis appeler les méthodes valueChanged des
         // listeners
     }
