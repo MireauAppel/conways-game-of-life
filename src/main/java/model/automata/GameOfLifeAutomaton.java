@@ -3,34 +3,34 @@ package model.automata;
 import model.CellularAutomaton;
 
 import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class GameOfLifeAutomaton implements CellularAutomaton<GameOfLifeState> {
+    private final int numberOfColumns;
+    private final int numberOfRows;
 
     public GameOfLifeAutomaton(int numberOfColumns, int numberOfRows) {
-        //TODO: à compléter
+        this.numberOfColumns = numberOfColumns;
+        this.numberOfRows = numberOfRows;
     }
 
     @Override
     public int numberOfColumns() {
-        //TODO: à compléter
-        return 0;
+        return numberOfColumns;
     }
 
     @Override
     public int numberOfRows() {
-        //TODO: à compléter
-        return 0;
+        return numberOfRows;
     }
 
     @Override
     public GameOfLifeState defaultState() {
-        //TODO: à compléter
-        return null;
+        return GameOfLifeState.DEAD;
     }
 
     @Override
     public GameOfLifeState randomState(Random generator) {
-        //TODO: à compléter
-        return null;
+        return generator.nextBoolean() ? GameOfLifeState.ALIVE : GameOfLifeState.DEAD;
     }
 }

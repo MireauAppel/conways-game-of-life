@@ -44,7 +44,12 @@ public interface State<S> {
      * @return The number of times the specified state appears in the list of neighbors.
      */
     static <T> int count(T state, List<T> neighbours) {
-        //TODO: à compléter
-        return 0;
+        int count = 0;
+        for (T neighbour : neighbours) {
+            if (state.equals(neighbour)) {
+                count = count + 1;
+            }
+        }
+        return count;
     }
 }

@@ -14,20 +14,30 @@ public enum GameOfLifeState implements State<GameOfLifeState> {
 
     @Override
     public Color getColor() {
-        //TODO: à compléter
-        return Color.BLACK;
+        return switch(this){
+            case ALIVE -> Color.RED;
+            case DEAD -> Color.WHITE;
+        };
     }
 
     @Override
     public GameOfLifeState next() {
-        //TODO: à compléter
-        return null;
+        return switch(this){
+            case ALIVE -> DEAD;
+            case DEAD -> ALIVE;
+        };
     }
 
     @Override
     public GameOfLifeState update(List<GameOfLifeState> neighbours) {
-        //TODO: à compléter
-        return null;
+        int counter = State.count(ALIVE, neighbours);
+            if (this.equals(ALIVE) && (counter == 2 || counter == 3)) {
+                return ALIVE;
+            }
+            if (this.equals(DEAD) && counter == 3) {
+                return ALIVE;
+            }
+        return DEAD;
     }
 
 }
