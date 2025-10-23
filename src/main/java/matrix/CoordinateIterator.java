@@ -41,11 +41,16 @@ class CoordinateIterator implements Iterator<Coordinate> {
      */
     @Override
     public Coordinate next() {
-        if (!hasNext()) throw new NoSuchElementException(); {}
-        Coordinate next = new Coordinate(current.x(), current.y());
-        current = current.right();
-        if (current.x()==width)
-            current = new  Coordinate(0,current.y()+1);
+        if (!hasNext()) throw new NoSuchElementException();
+        Coordinate next=current;
+        update();
         return next;
+    }
+
+    private void update(){
+        current = current.right();
+        if(current.x() == width){
+            current = new Coordinate(0, current.y()+1);
+        }
     }
 }
