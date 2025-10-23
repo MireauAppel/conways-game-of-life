@@ -47,19 +47,17 @@ public class ListMatrix<T> implements Matrix<T> {
 
   @Override
   public T get(int x, int y) {
-    // TODO
-    return null;
+    return this.matrix.get(x).get(y);
   }
 
 
   @Override
   public void set(int x, int y, T newValue) {
-    // TODO
+    this.matrix.get(x).set(y, newValue);
   }
 
   public Matrix<T> subMatrix(Coordinate corner, int width, int height) {
-    // TODO
-    return this;
+    return new ListMatrix<>(width, height, new SubMatrixInitializer<>(this.corner));
   }
 
 }
